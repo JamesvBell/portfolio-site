@@ -1,12 +1,14 @@
 import os
 from .base import *
 
-DEBUG = False
-SECRET_KEY = os.environ.get("SECRET_KEY")
-ALLOWED_HOSTS = ["*.onrender.com", "yourdomain.com"]  # Update with your domain later
+DEBUG = True  # Temporarily set to True for debugging
+SECRET_KEY = os.environ.get("SECRET_KEY", "temporary-development-key")
+ALLOWED_HOSTS = ["*"]  # Allow all hosts temporarily for debugging
 
-# Add this section for port binding
-PORT = int(os.environ.get("PORT", 8000))
+# Add Whitenoise for static files
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Use SQLite initially
 DATABASES = {
