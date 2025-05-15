@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: portfolio
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn myportfolio.wsgi:application
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DJANGO_SETTINGS_MODULE
+        value: myportfolio.settings.production
+      - key: PORT
+        value: 8000
