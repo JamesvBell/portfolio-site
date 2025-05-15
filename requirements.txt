@@ -32,3 +32,4 @@ tzdata==2025.2
 urllib3==2.4.0
 wagtail==7.0
 willow==1.10.0
+whitenoise==6.5.0
